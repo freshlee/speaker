@@ -6,7 +6,7 @@
     font-size: 20px;
     height: 35px;
 }
-.detail-title img, .detail-title span {
+.detail-title .icon-lecture, .detail-title .title-name {
     display: inline-block;
     height: 35px;
     line-height: 35px;

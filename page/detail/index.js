@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Tree, Radio, Table, Button } from 'antd';
+import { Row, Col, Tree, Checkbox, Table, Button } from 'antd';
 import Esn_img from 'esn_img'  //这个是js文件
 import 'esn_img/dist/styles.css'
 import "./index.css";
@@ -44,7 +44,8 @@ export default class Detail extends Component {
         key: i,
         name: `P${i + 1}`,
         age: (<div className="preview"><img onClick={() => this.preview.call(this, `../../img/fake0${i % 5 + 1}.png`)} src={`../../img/fake0${i % 5 + 1}.png`}></img></div>),
-        address: `科大讯飞合成语音0${i + 1}.mp3`
+        address: `科大讯飞合成语音0${i + 1}.mp3`,
+        operate: <Checkbox></Checkbox>
       })
     }
 		return (
@@ -53,9 +54,9 @@ export default class Detail extends Component {
         <div className="detail-wrap">
         <div className="detail-title">
           <img src="../../img/lecture.png" className="icon-lecture"/>
-          <span>课程讲解.PPT</span>
+          <span className="title-name">课程讲解.PPT</span>
           <div className="table-wrap"></div>
-          <Table dataSource={dataSource} columns={columns} pagination={{pageSize: 7}} />
+          <Table rowSelection={{type: 'checkbox'}} dataSource={dataSource} columns={columns} pagination={{pageSize: 7}} />
         </div>
         <Esn_img pic={[this.state.url]} 
           describe={['ccc','sdsds','dww']} ref={this.refCb} close={this.close.bind(this)} left_done={()=>{alert('这是第一张')} }

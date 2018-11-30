@@ -1,48 +1,49 @@
 import React, { Component } from "react";
+import "./index.css";
+function getQueryString(name) { 
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+    var r = window.location.search.substr(1).match(reg); 
+    if (r != null) return unescape(r[2]); 
+    return null; 
+} 
 export default class Detail extends Component {
-    state = {
-      url: '',
-      Esn_img: null
+    componentDidMount = () => {
+        var timer = setTimeout(function(){
+            document.getElementById('before').classList.add("on");
+            document.getElementById('after').classList.add("on");
+        },2000)
+        console.log(this);
     }
-    preview (url) {
-      this.setState({
-        url
-      })
-      document.getElementsByClassName('ztao_tupian')[0].style.display = 'block'
+    render() {
+        console.log(this.props.location.pathname.split('/').pop())
+        return (
+            <div>
+                <div id="before" className="amin-box">
+                    <div className="bg0 pa">
+                        <div className="bg1"></div>
+                    </div>
+                    <div className="hx-box pa">
+                        <ul className="pr">
+                            <li className="hx-k1 pa0">
+                                <span></span>
+                            </li>
+                            <li className="hx-k2 pa0">
+                                <span></span>
+                            </li>
+                            <li className="hx-k3 pa0">
+                                <span></span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <p className="text">正在生成中...</p>
+                </div>
+
+                <div id="after" className="cg-box">
+                    <div className="cg-img"></div>
+                    <div className="text">{this.props.location.pathname.split('/').pop()}生成成功！<p><a href='../../doc/demo.pptx'>点击下载</a></p> </div>
+                </div>
+            </div>
+        );
     }
-    close (url) {
-      console.log('sadasd', this.refs.refCb)
-      document.getElementsByClassName('ztao_tupian')[0].style.display = 'none'
-    }
-    refCb(Esn_img){
-      PreComponent = Esn_img
-      console.log(PreComponent)
-      document.getElementsByClassName('ztao_tupian')[0].style.display = 'none'
-    }
-      render() {
-      for (let i = 0; i < 100; i++) {
-        dataSource.push({
-          key: i,
-          name: `P${i + 1}`,
-          age: (<div className="preview"><img onClick={() => this.preview.call(this, `../../img/fake0${i % 5 + 1}.png`)} src={`../../img/fake0${i % 5 + 1}.png`}></img></div>),
-          address: `科大讯飞合成语音0${i + 1}.mp3`
-        })
-      }
-          return (
-        <div>
-          <div className="title">一键生成教学视频 <Button size="large" ghost>生成</Button> </div>
-          <div className="detail-wrap">
-          <div className="detail-title">
-            <img src="../../img/lecture.png" className="icon-lecture"/>
-            <span>课程讲解.PPT</span>
-            <div className="table-wrap"></div>
-            <Table dataSource={dataSource} columns={columns} pagination={{pageSize: 7}} />
-          </div>
-          <Esn_img pic={[this.state.url]} 
-            describe={['ccc','sdsds','dww']} ref={this.refCb} close={this.close.bind(this)} left_done={()=>{alert('这是第一张')} }
-            right_done={()=>{alert('没有了')}}/> 
-          </div>
-        </div>
-          );
-      }
-  }
+}

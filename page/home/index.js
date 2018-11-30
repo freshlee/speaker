@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Row, Col, Tree, Radio, Button } from 'antd';
 import "./index.css";
 import { Level } from "chalk";
+import {createBrowserHistory} from 'history'
+
+
+const history = createBrowserHistory()
 const TreeNode = Tree.TreeNode;
 const RadioGroup = Radio.Group;
 
@@ -52,38 +56,6 @@ export default class Home extends Component {
     selectedKeys: [],
     indexTree: ['0-0']
   }
-
-  onExpand = (expandedKeys) => {
-    console.log('onExpand', expandedKeys);
-    // if not set autoExpandParent to false, if children expanded, parent can not collapse.
-    // or, you can remove all expanded children keys.
-    this.setState({
-      expandedKeys,
-      autoExpandParent: false,
-    });
-  }
-
-  onCheck = (checkedKeys) => {
-    console.log('onCheck', checkedKeys);
-    this.setState({ checkedKeys });
-  }
-
-  onSelect = (selectedKeys, info) => {
-    console.log('onSelect', info);
-    this.setState({ selectedKeys });
-  }
-  renderTreeNodes = (data) => {
-    return data.map((item) => {
-      if (item.children) {
-        return (
-          <TreeNode title={item.title} key={item.key} dataRef={item}>
-            {this.renderTreeNodes(item.children)}
-          </TreeNode>
-        );
-      }
-      return <TreeNode {...item} />;
-    });
-  }
   onChange (index, event) {
     this.state.indexTree[index] = event.target.value
     this.setState({
@@ -101,39 +73,43 @@ export default class Home extends Component {
   }
 	render() {
 		return (
-			<div className="wrap">
-        <Row gutter={16}>
-          <Col span={8}>
-            <RadioGroup onChange={(event) => this.onChange.call(this, 0, event)} value={this.state.indexTree[0]}>
-              {treeData.map((item) => {
-                return (<Radio style={radioStyle} value={item.key} key={item.key}>{item.title}</Radio>)
-              })}
-            </RadioGroup>
-          </Col>
-          <Col span={8}>
-          <RadioGroup onChange={(event) => this.onChange.call(this, 1, event)} value={this.state.indexTree[1]}>
-              {this.searchNode.call(this, 0).map((item) => {
-                return (
-                  <div className="box">
-                    <Radio style={radioStyle} value={item.key} key={item.key}>{item.title}</Radio>
-                    <div className={'hover ' +  (item.key === this.state.indexTree[1] ? 'active' : '')}>课程描述,课程详情介绍</div>
-                  </div>)
-              })}
-            </RadioGroup>
-          </Col>
-          <Col span={8}>
-          <RadioGroup onChange={(event) => this.onChange.call(this, 2, event)} value={this.state.indexTree[2]}>
-              {this.searchNode.call(this, 1).map((item) => {
-                return (<Radio style={radioStyle} value={item.key} key={item.key}>{item.title}</Radio>)
-              })}
-            </RadioGroup>
-          </Col>
-        </Row>
-        <div className="footer">
-        <Button>一键生成Word文档</Button>
-        <Button>一键生成PPT文档</Button>
-        <Button>一键生成教学视频</Button>
-      </div>
+			<div className="home">
+        <div className="title">知识库系统 </div>
+        <span className="title-name">请选择学科</span>
+        <div className="wrap">
+          <Row gutter={16}>
+            <Col span={8}>
+              <RadioGroup onChange={(event) => this.onChange.call(this, 0, event)} value={this.state.indexTree[0]}>
+                {treeData.map((item, index) => {
+                  return (<Radio style={radioStyle} value={item.key} key={index}>{item.title}</Radio>)
+                })}
+              </RadioGroup>
+            </Col>
+            <Col span={8}>
+            <RadioGroup onChange={(event) => this.onChange.call(this, 1, event)} value={this.state.indexTree[1]}>
+                {this.searchNode.call(this, 0).map((item, index) => {
+                  return (
+                    <div className="box" key={index}>
+                      <Radio style={radioStyle} value={item.key}>{item.title}</Radio>
+                      <div className={'hover ' +  (item.key === this.state.indexTree[1] ? 'active' : '')}>课程描述,课程详情介绍</div>
+                    </div>)
+                })}
+              </RadioGroup>
+            </Col>
+            <Col span={8}>
+            <RadioGroup onChange={(event) => this.onChange.call(this, 2, event)} value={this.state.indexTree[2]}>
+                {this.searchNode.call(this, 1).map((item, index) => {
+                  return (<Radio style={radioStyle} value={item.key} key={index}>{item.title}</Radio>)
+                })}
+              </RadioGroup>
+            </Col>
+          </Row>
+          {this.state.indexTree[2] ? <div className="footer">
+            <Button onClick={() => this.props.history.push({pathname: `/generate/word`,params:{type: 'word'}})}>一键生成Word文档</Button>
+            <Button onClick={() => this.props.history.push({pathname: `/generate/ppt`,params:{type: 'ppt'}})}>一键生成PPT文档</Button>
+            <Button onClick={() => this.props.history.push("/detail")}>一键生成教学视频</Button>
+          </div> : ''}
+        </div>
 	    </div>
 		);
 	}
