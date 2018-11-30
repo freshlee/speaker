@@ -3,12 +3,16 @@ import Detail from './page/detail/index.js'
 import Generate from './page/generate/index.js'
 import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import BG from './bg.js';
 console.log(Detail)
 export default class App extends React.Component {
+        componentDidMount () {
+            BG()
+        }
       render() {
           return (
                 <div>
+                    <canvas id="canvas"></canvas>
                     <Router>
                         <Switch>
                             <Route exact={true} component={Home} path="/" />
