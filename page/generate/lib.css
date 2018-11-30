@@ -1,0 +1,161 @@
+@charset 'utf-8';
+
+html {
+    width: 100%;
+    height: 100%
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(right top, circle cover, rgb(77, 119, 235) 55%, rgb(213, 165, 255) 100%);
+    background: -o-radial-gradient(right top, circle cover, rgb(77, 119, 235) 55%, rgb(213, 165, 255) 100%);
+    background: -ms-radial-gradient(right top, circle cover, rgb(77, 119, 235) 55%, rgb(213, 165, 255) 100%);
+    background: -moz-radial-gradient(right top, circle cover, rgb(77, 119, 235) 55%, rgb(213, 165, 255) 100%);
+    background: -webkit-radial-gradient(right top, circle cover, rgb(77, 119, 235) 55%, rgb(213, 165, 255) 100%);
+
+}
+
+.amin-box.on{
+    opacity: 0;
+}
+
+.amin-box{
+    width: 250px;
+    height: 320px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    opacity: 1;
+}
+
+.text{
+    font-size: 16px;
+    color: #f4f4f4;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    letter-spacing: 5px;
+}
+.bg0 {
+    width: 80px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url(../images/bg0.png) no-repeat center center;
+    background-size: 150%;
+}
+
+.bg1 {
+    width: 80px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background: url(../images/bg1.png) no-repeat center center;
+    background-size: cover;
+}
+
+.hx-box {
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateY(75deg)
+}
+
+.hx-box ul {
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    animation: hxz 6s linear infinite
+}
+
+@keyframes hxz {
+    0% {
+        transform: rotateX(0deg)
+    }
+
+    100% {
+        transform: rotateX(-360deg)
+    }
+}
+
+.hx-box ul li {
+    width: 250px;
+    height: 250px;
+    border: 6px solid #5ec0ff;
+    border-radius: 1e3px
+}
+
+.hx-box ul li span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(../images/hx.png) no-repeat center center;
+    background-position: 150%;
+    background-size: cover;
+    overflow: hidden;
+    animation: hx 2s linear infinite;
+}
+
+@keyframes hx {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.hx-k2 {
+    transform: rotateX(60deg) rotateZ(60deg)
+}
+
+.hx-k3 {
+    transform: rotateX(-60deg) rotateZ(-60deg)
+}
+
+
+
+
+
+
+
+.cg-box.on{
+    opacity: 1;
+}
+
+.cg-box{
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    opacity: 0;
+    transition: all .5s;
+}
+
+.cg-box{
+    width: 250px;
+    height: 320px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+}
+.cg-img{
+    width: 250px;
+    height: 250px;
+    background: url(../images/cg.png) no-repeat center center;
+    background-size: cover;
+}

@@ -1,0 +1,29 @@
+.detail-wrap {
+    padding: 20px 40px;
+}
+.detail-title {
+    vertical-align: middle;
+    font-size: 20px;
+    height: 35px;
+}
+.detail-title img, .detail-title span {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+}
+.icon-lecture {
+    width: 35px;
+    margin-right: 15px;
+}
+.table-wrap {
+    margin-top: 30px;
+}
+.preview {
+    width: 105px;
+    height: 60px;
+}
+.preview img{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}

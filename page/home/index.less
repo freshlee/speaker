@@ -1,0 +1,40 @@
+.wrap {
+    padding: 40px;
+    box-sizing: border-box;
+}
+.box {
+    &::hover {
+        .hover {
+            display: block
+        }
+    }
+}
+.box .hover {
+    display: none;
+}
+.box:hover .hover, .box .active {
+    display: block !important;
+}
+.footer {
+    // border-top: 2px solid #000000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #ccc;
+  }
+  .footer .button {
+    border: 1px solid #000000;
+    background: #fff;
+    display: inline-block;
+    width: 140px;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+  }
